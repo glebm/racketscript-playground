@@ -8,14 +8,8 @@
          racket/list
          threading)
 
-(let ([jquery #js*.jQuery])
-  ($> (jquery document)
-      (ready
-       (λ ()
-         ($> (jquery #js"body")
-             (css #js"margin" 0)
-             (css #js"padding" 0))
-         (print-image (welcome-image))))))
+($/:= #js*.document.body.style.padding 0)
+($/:= #js*.document.body.style.margin 0)
 
 ;; (Listof Color) -> Image
 ;; Returns a single tile of carpet
@@ -70,3 +64,5 @@
 ;; -> Non-Negative-Integet
 (define (viewport-height)
   (- ($> (#js*.jQuery window) (height)) 5))
+
+(print-image (welcome-image))
